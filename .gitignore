@@ -1,0 +1,9 @@
+# NPM Packages
+node_modules/
+
+# OS Stuff
+.DS_Store
+
+# Editors
+.idea/
+.vscode/
