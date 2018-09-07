@@ -22,7 +22,7 @@ const spinners = {
 };
 
 const ignoreDefaultPackages = async (array) => {
-	const itemsToRemove = ['npm', 'yarn', 'npm-g-rm'];
+	const itemsToRemove = ['npm', 'yarn', 'npm-global-rm-interactive'];
 	const arrayFiltered = await array.filter(item => !itemsToRemove.includes(item));
 	return arrayFiltered;
 };
