@@ -1,7 +1,7 @@
 {
 	"name": "npm-global-rm-interactive",
 	"author": "Gerson Nino <meta.author@gersonnino.me> (https://gersonnino.me)",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "An interactive cli tool to uninstall npm global packages.",
 	"keywords": [
 		"cli",
