@@ -57,13 +57,17 @@ const ask = async (listToAsk) => {
 		});
 };
 
+const promptOptions = {
+	name: 'Node'
+};
+
 const removeBatch = async (list) => {
 	const listConcated = await list.join(' ');
 	const spinnerRemover = spinners.removingPackages();
 	spinnerRemover.start();
 
 	try {
-		const stdout = sudo.exec('npm uninstall -g ' + listConcated, {} , (error, stdout) => {
+		const stdout = sudo.exec('npm uninstall -g ' + listConcated, promptOptions , (error, stdout) => {
 			if (error) {
 				spinnerRemover.fail('Error with the uninstall proccess');
 				throw (error);
