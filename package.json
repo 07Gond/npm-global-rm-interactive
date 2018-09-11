@@ -19,8 +19,13 @@
 	},
 	"main": "index.js",
 	"scripts": {
-		"test": "xo && ava tests/**/*.test.js --verbose",
+		"test": "xo && ava --verbose",
 		"coverage": "nyc yarn test"
+	},
+	"ava": {
+		"files": [
+			"tests/**/*.test.js"
+		]
 	},
 	"nyc": {
 		"reporter": [
