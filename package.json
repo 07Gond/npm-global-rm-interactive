@@ -17,12 +17,26 @@
 	"bin": {
 		"npm-g-rmi": "./bin/index.js"
 	},
+	"main": "index.js",
+	"scripts": {
+		"test": "xo && ava tests/**/*.test.js --verbose",
+		"coverage": "nyc yarn test"
+	},
+	"nyc": {
+		"reporter": [
+			"lcov",
+			"text",
+			"html"
+		]
+	},
 	"dependencies": {
 		"ora": "^3.0.0",
 		"prompt-checkbox": "^2.2.0",
 		"sudo-prompt": "^8.2.0"
 	},
 	"devDependencies": {
-		"eslint": "^5.5.0"
+		"ava": "1.0.0-beta.8",
+		"nyc": "^13.0.1",
+		"xo": "^0.23.0"
 	}
 }

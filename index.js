@@ -94,3 +94,4 @@ const main = async () => {
 };
 
 module.exports = main;
+module.exports = ignoreDefaultPackages;
