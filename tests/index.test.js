@@ -1,5 +1,5 @@
 const test = require('ava');
-const {ignoreDefaultPackages} = require('../tasks/tasks');
+const tasks = require('../tasks/tasks');
 
 test('foo', t => {
 	t.pass();
@@ -13,6 +13,6 @@ test('bar', async t => {
 
 test('Array filtered', async t => {
 	const arrayToTest = ['yarn', 'test'];
-	const filterDependencies = await ignoreDefaultPackages(arrayToTest);
+	const filterDependencies = await tasks.ignoreDefaultPackages(arrayToTest);
 	t.is(await filterDependencies.toString(), ['test'].toString());
 });
