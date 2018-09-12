@@ -16,6 +16,10 @@ const spinners = {
 		...spinerDefaults,
 		text: 'Loading global dependencies'
 	}),
+	proccessingPackages: () => ora({
+		...spinerDefaults,
+		text: 'Processing dependencies list'
+	}),
 	removingPackages: () => ora({
 		...spinerDefaults,
 		text: 'Removing global packages'
@@ -64,17 +68,17 @@ const promptOptions = {
 };
 
 const removeBatch = async list => {
-	const listConcated = await list.join(' ');
+	const concatenatedList = await list.join(' ');
 	const spinnerRemover = spinners.removingPackages();
 	spinnerRemover.start();
 
 	try {
-		const stdout = sudo.exec('npm uninstall -g ' + listConcated, promptOptions, (error, stdout) => {
+		const stdout = sudo.exec('npm uninstall -g ' + concatenatedList, promptOptions, (error, stdout) => {
 			if (error) {
 				spinnerRemover.fail('Error with the uninstall proccess');
 				throw (error);
 			}
-			spinnerRemover.succeed('Packages succesfully removed');
+			spinnerRemover.succeed('Package(s) succesfully removed: ' + concatenatedList);
 			return stdout;
 		});
 		return stdout;
@@ -89,8 +93,28 @@ const listToRemove = async () => {
 	return answers;
 };
 
+const isFilledList = async answers => {
+	const filled = await Boolean(answers.length);
+	return filled;
+};
+
+const processList = async answers => {
+	const spinnerProcessing = spinners.proccessingPackages();
+	spinnerProcessing.start();
+
+	const isFilled = await isFilledList(answers);
+
+	if (isFilled) {
+		spinnerProcessing.succeed('Packages proceding to remove.');
+		await removeBatch(answers);
+	} else {
+		spinnerProcessing.succeed('Empty list. No packages uninstalled.');
+	}
+};
+
 module.exports = {
 	listToRemove,
 	removeBatch,
+	processList,
 	ignoreDefaultPackages
 };
