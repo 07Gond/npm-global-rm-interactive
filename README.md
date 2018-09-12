@@ -1,11 +1,11 @@
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2F07Gond%2Fnpm-global-rm-interactive.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2F07Gond%2Fnpm-global-rm-interactive?ref=badge_shield) [![Known Vulnerabilities](https://snyk.io/test/github/07gond/npm-global-rm-interactive/badge.svg)](https://snyk.io/test/github/07gond/npm-global-rm-interactive)
 
 
-# NPM Global Remove Interactive ![NPM Logo](./npm-logo-black.png)
+# NPM Global Remove Interactive ![NPM Logo](https://raw.githubusercontent.com/07Gond/npm-global-rm-interactive/master/npm-logo-black.png)
 
 > An interactive cli tool to uninstall npm global packages.
 
-![](./demo.png)
+![](https://raw.githubusercontent.com/07Gond/npm-global-rm-interactive/master/demo.png)
 
 ## Getting Started :computer:
 
