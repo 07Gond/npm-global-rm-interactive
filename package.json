@@ -27,7 +27,7 @@
 		"test": "xo && nyc ava --verbose",
 		"coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "semantic-release": "semantic-release",
-    "release-job": "yarn semantic-release && yarn coverage",
+    "release-job": "yarn coverage && yarn semantic-release",
 		"travis-deploy-once": "travis-deploy-once --pro"
 	},
 	"ava": {
