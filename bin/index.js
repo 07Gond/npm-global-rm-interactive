@@ -2,9 +2,9 @@
 
 'use strict';
 
-const main = require('../index');
+const main = require('..');
 
 main()
-	.catch((error) => {
-		console.error(Error(error));
+	.catch(error => {
+		console.error(new Error(error));
 	});
