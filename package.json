@@ -26,8 +26,9 @@
 		"commit": "commit",
 		"test": "xo && nyc ava --verbose",
 		"coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-		"semantic-release": "semantic-release",
-		"travis-deploy-once": "travis-deploy-once"
+    "semantic-release": "semantic-release",
+    "release-job": "yarn semantic-release && yarn coverage",
+		"travis-deploy-once": "travis-deploy-once --pro"
 	},
 	"ava": {
 		"files": [
