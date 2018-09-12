@@ -1,5 +1,5 @@
 const test = require('ava');
-const ignoreDefaultPackages = require('..');
+const {ignoreDefaultPackages} = require('../tasks/tasks');
 
 test('foo', t => {
 	t.pass();
