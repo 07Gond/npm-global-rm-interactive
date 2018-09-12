@@ -16,6 +16,15 @@
 
 - Node.js (Tested with > v.8)
 
+### One-off invocation without local installation
+
+With npx:
+> _Running npx requires npm@5.2.0 or greater to be installed_
+
+```
+$ npx npm-global-rm-interactive -- ...
+```
+
 ### Installation
 
 With npm:
