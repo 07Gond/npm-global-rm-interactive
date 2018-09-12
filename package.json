@@ -1,7 +1,7 @@
 {
 	"name": "npm-global-rm-interactive",
 	"author": "Gerson Nino <meta.author@gersonnino.me> (https://gersonnino.me)",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "An interactive cli tool to uninstall npm global packages.",
 	"keywords": [
 		"cli",
@@ -20,7 +20,9 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "xo && nyc ava --verbose",
-		"coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+		"coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+		"semantic-release": "semantic-release",
+		"travis-deploy-once": "travis-deploy-once"
 	},
 	"ava": {
 		"files": [
@@ -43,6 +45,12 @@
 		"ava": "1.0.0-beta.8",
 		"codecov": "^3.1.0",
 		"nyc": "^13.0.1",
+		"semantic-release": "^15.9.15",
+		"travis-deploy-once": "^5.0.7",
 		"xo": "^0.23.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/07Gond/npm-global-rm-interactive.git"
 	}
 }
