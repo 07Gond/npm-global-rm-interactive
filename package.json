@@ -19,8 +19,8 @@
 	},
 	"main": "index.js",
 	"scripts": {
-		"test": "xo && ava --verbose",
-		"coverage": "nyc yarn test"
+		"test": "xo && nyc ava --verbose",
+		"coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
 	},
 	"ava": {
 		"files": [
@@ -41,6 +41,7 @@
 	},
 	"devDependencies": {
 		"ava": "1.0.0-beta.8",
+		"codecov": "^3.1.0",
 		"nyc": "^13.0.1",
 		"xo": "^0.23.0"
 	}
