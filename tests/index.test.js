@@ -11,7 +11,7 @@ test('bar', async t => {
 	t.is(await bar, 'bar');
 });
 
-test('Array filtered', async t => {
+test('Array filtered of default packages', async t => {
 	const arrayToTest = ['yarn', 'test'];
 	const filterDependencies = await tasks.ignoreDefaultPackages(arrayToTest);
 	t.is(await filterDependencies.toString(), ['test'].toString());
