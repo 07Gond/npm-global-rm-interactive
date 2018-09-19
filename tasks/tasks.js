@@ -91,5 +91,6 @@ const listToRemove = async () => {
 
 module.exports = {
 	listToRemove,
-	removeBatch
+	removeBatch,
+	ignoreDefaultPackages
 };
