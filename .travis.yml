@@ -1,4 +1,15 @@
 language: node_js
+cache:
+  directories:
+    - ~/.npm
+notifications:
+  email: false
 node_js:
-- "node"
-after_success: yarn coverage
+  - '10'
+  - '8'
+after_success:
+  - yarn coverage
+  - yarn travis-deploy-once "yarn semantic-release"
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
