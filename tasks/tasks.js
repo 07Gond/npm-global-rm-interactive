@@ -26,10 +26,9 @@ const spinners = {
 	})
 };
 
-const ignoreDefaultPackages = async array => {
+const ignoreDefaultPackages = array => {
 	const itemsToRemove = ['npm', 'yarn', 'npm-global-rm-interactive'];
-	const arrayFiltered = await array.filter(item => !itemsToRemove.includes(item));
-	return arrayFiltered;
+	return array.filter(item => !itemsToRemove.includes(item));
 };
 
 const npmGlobalPackages = async () => {
@@ -39,9 +38,9 @@ const npmGlobalPackages = async () => {
 	try {
 		const {stdout} = await exec('npm list -g --depth 0 -json');
 		const globalDependencies = await Object.keys(JSON.parse(stdout).dependencies);
-		const filterDependencites = await ignoreDefaultPackages(globalDependencies);
+		const noDefaultInstalledPackages = await ignoreDefaultPackages(globalDependencies);
 		spinnerPckgs.succeed('Global dependencies listed');
-		return filterDependencites;
+		return noDefaultInstalledPackages;
 	} catch (error) {
 		spinnerPckgs.fail('Error with the list proccess');
 		throw (error);
@@ -49,6 +48,9 @@ const npmGlobalPackages = async () => {
 };
 
 const ask = async listToAsk => {
+	if (listToAsk.length === 0) {
+		return [];
+	}
 	const promptList = new Prompt({
 		name: 'install',
 		message: 'Which packages do you want to remove?',
@@ -87,24 +89,18 @@ const removeBatch = async list => {
 	}
 };
 
-const listToRemove = async () => {
+const getPackagesToRemove = async () => {
 	const listToAsk = await npmGlobalPackages();
-	const answers = await ask(listToAsk);
-	return answers;
+	return ask(listToAsk);
 };
 
-const isFilledList = async answers => {
-	const filled = await Boolean(answers.length);
-	return filled;
-};
+const isFilledList = answers => Boolean(answers.length);
 
 const processList = async answers => {
 	const spinnerProcessing = spinners.proccessingPackages();
 	spinnerProcessing.start();
 
-	const isFilled = await isFilledList(answers);
-
-	if (isFilled) {
+	if (isFilledList(answers)) {
 		spinnerProcessing.succeed('Packages proceding to remove.');
 		await removeBatch(answers);
 	} else {
@@ -113,7 +109,7 @@ const processList = async answers => {
 };
 
 module.exports = {
-	listToRemove,
+	getPackagesToRemove,
 	removeBatch,
 	processList,
 	ignoreDefaultPackages
