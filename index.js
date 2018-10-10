@@ -3,7 +3,7 @@
 const tasks = require('./tasks/tasks');
 
 const main = async () => {
-	const packages = await tasks.listToRemove();
+	const packages = await tasks.getPackagesToRemove();
 	await tasks.processList(packages);
 };
 
