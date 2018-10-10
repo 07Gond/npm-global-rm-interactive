@@ -26,7 +26,7 @@ const spinners = {
 	})
 };
 
-const ignoreDefaultPackages = async array => {
+const ignoreDefaultPackages = array => {
 	const itemsToRemove = ['npm', 'yarn', 'npm-global-rm-interactive'];
 	return array.filter(item => !itemsToRemove.includes(item));
 };
@@ -36,7 +36,7 @@ const npmGlobalPackages = async () => {
 	spinnerPckgs.start();
 
 	try {
-		const { stdout } = await exec('npm list -g --depth 0 -json');
+		const {stdout} = await exec('npm list -g --depth 0 -json');
 		const globalDependencies = await Object.keys(JSON.parse(stdout).dependencies);
 		const noDefaultInstalledPackages = await ignoreDefaultPackages(globalDependencies);
 		spinnerPckgs.succeed('Global dependencies listed');
