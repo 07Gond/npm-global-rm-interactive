@@ -1,54 +1,11 @@
 'use strict';
 
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
 const sudo = require('sudo-prompt');
-const ora = require('ora');
 
 const Prompt = require('prompt-checkbox');
 
-const spinerDefaults = {
-	spinner: 'dots8'
-};
-
-const spinners = {
-	globalPackages: () => ora({
-		...spinerDefaults,
-		text: 'Loading global dependencies'
-	}),
-	proccessingPackages: () => ora({
-		...spinerDefaults,
-		text: 'Processing dependencies list'
-	}),
-	removingPackages: () => ora({
-		...spinerDefaults,
-		text: 'Removing global packages'
-	})
-};
-
-const ignoreDefaultPackages = array => {
-	if (!array) {
-		throw new Error('It should be a valid array')
-	}
-	const itemsToRemove = ['npm', 'yarn', 'npm-global-rm-interactive'];
-	return array.filter(item => !itemsToRemove.includes(item));
-};
-
-const npmGlobalPackages = async () => {
-	const spinnerPckgs = spinners.globalPackages();
-	spinnerPckgs.start();
-
-	try {
-		const {stdout} = await exec('npm list -g --depth 0 -json');
-		const globalDependencies = await Object.keys(JSON.parse(stdout).dependencies);
-		const noDefaultInstalledPackages = await ignoreDefaultPackages(globalDependencies);
-		spinnerPckgs.succeed('Global dependencies listed');
-		return noDefaultInstalledPackages;
-	} catch (error) {
-		spinnerPckgs.fail('Error with the list proccess');
-		throw (error);
-	}
-};
+const npmGlobalPackages = require('./npm-global-packages');
+const spinners = require('./spinners');
 
 const ask = async listToAsk => {
 	if (listToAsk.length === 0) {
@@ -113,6 +70,5 @@ const processList = async answers => {
 module.exports = {
 	getPackagesToRemove,
 	removeBatch,
-	processList,
-	ignoreDefaultPackages
+	processList
 };
