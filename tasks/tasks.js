@@ -27,6 +27,9 @@ const spinners = {
 };
 
 const ignoreDefaultPackages = array => {
+	if (!array) {
+		throw new Error('It should be a valid array')
+	}
 	const itemsToRemove = ['npm', 'yarn', 'npm-global-rm-interactive'];
 	return array.filter(item => !itemsToRemove.includes(item));
 };
@@ -73,7 +76,6 @@ const removeBatch = async list => {
 	const concatenatedList = await list.join(' ');
 	const spinnerRemover = spinners.removingPackages();
 	spinnerRemover.start();
-
 	try {
 		const stdout = sudo.exec('npm uninstall -g ' + concatenatedList, promptOptions, (error, stdout) => {
 			if (error) {
