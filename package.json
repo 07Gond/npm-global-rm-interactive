@@ -25,9 +25,11 @@
 	"scripts": {
 		"commit": "commit",
 		"test": "xo && nyc ava --verbose",
+		"test-dev": "ava --verbose --watch",
+		"fix-lint": "xo --fix",
 		"coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "semantic-release": "semantic-release",
-    "release-job": "yarn coverage && yarn semantic-release",
+		"semantic-release": "semantic-release",
+		"release-job": "yarn coverage && yarn semantic-release",
 		"travis-deploy-once": "travis-deploy-once --pro"
 	},
 	"ava": {
@@ -42,11 +44,11 @@
 			"html"
 		]
 	},
-	"commitlint": { 
-    "extends": [ 
-      "@commitlint/config-conventional"
-    ] 
-  }, 
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
 	"husky": {
 		"hooks": {
 			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
@@ -62,7 +64,7 @@
 		"@commitlint/cli": "^7.1.2",
 		"@commitlint/config-conventional": "^7.1.2",
 		"@commitlint/prompt-cli": "^7.1.2",
-		"ava": "1.0.0-beta.8",
+		"ava": "1.0.0-beta.5",
 		"codecov": "^3.1.0",
 		"husky": "^1.0.0-rc.14",
 		"nyc": "^13.0.1",
