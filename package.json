@@ -68,7 +68,7 @@
 		"codecov": "^3.1.0",
 		"husky": "^1.0.0-rc.14",
 		"nyc": "^13.0.1",
-		"semantic-release": "^15.9.15",
+		"semantic-release": "^17.2.3",
 		"travis-deploy-once": "^5.0.7",
 		"xo": "^0.23.0"
 	}
