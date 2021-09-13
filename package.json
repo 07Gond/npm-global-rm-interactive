@@ -56,7 +56,7 @@
 		}
 	},
 	"dependencies": {
-		"ora": "^3.0.0",
+		"ora": "^6.0.0",
 		"prompt-checkbox": "^2.2.0",
 		"sudo-prompt": "^8.2.0"
 	},
